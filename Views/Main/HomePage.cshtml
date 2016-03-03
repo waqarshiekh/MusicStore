@@ -1,0 +1,268 @@
+﻿@*
+
+@{
+    ViewBag.Title = "HomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #leftmenu ul :hover{
+       background-color:slategrey;  
+    }
+
+</style>
+
+@{
+    <script>
+        $(document).ready(function () {
+            $("#dislike").hide();
+
+            $("#like").click(function () {
+                alert("like");
+                $("#like").hide();
+                $("#dislike").show();
+            });
+
+            $("#dislike").click(function () {
+                alert("dislike");
+                $("#like").show();
+                $("#dislike").hide();
+            });
+        });
+
+        </script>
+}
+            <!DOCTYPE html>
+
+            <head>
+                <title>Bootstrap Example</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+                <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js" ></script>
+
+    <style>
+
+     #list  {      
+      display: inline-block;
+      column-count: 3;
+      }
+    </style>
+</head>
+<body id="body" style="background-color:white ">
+
+    <hr style="margin-top:5px; margin-bottom:15px" />
+
+    <div class="row">
+        <div id="leftmenu" class="col-md-2">
+            <ul style="list-style:none" id="leftmenu">
+                <li><img src="~/Images/home.jpg"  style="width:15%"/>  <a href="#"  onclick="home()" style="margin-left:1% ; color:black" >Home</a></li><br />
+                <li><img src="~/Images/home.jpg" style="width:15%" /> <a href="#" onclick="Trending()" style="margin-left:1%;color:black" >Trending</a></li><br />
+                <li>
+                    <hr style="margin-top:5px; margin-bottom:15px" />
+                </li>
+                <li style="width:109%"> Best of Video of the Day..</li><br />
+                <li> <img src="~/Images/music.jpg" style="width:15%" /> <a href="#" onclick="Music()" style="color:black"> Music </a> </li><br />
+                <li> <img src="~/Images/music.jpg" style="width:15%" />   <a href="#" onclick="Sports()" style="color:black"> Sports </a> </li><br />
+                <li> <img src="~/Images/gaming.jpg" style="width:15%" />  <a href="#" onclick="Gaming()" style="color:black"> Gamming</a> </li><br />
+                <li> <img src="~/Images/news.jpg" style="width:15%" />  <a href="#" onclick="News()" style="color:black"> News</a> </li><br />
+                <hr style="margin-top:5px; margin-bottom:15px" />
+                <li><span>Sign in to see your personal data</span></li><br />
+                <li><a href=""  style="color:black" >Sign in</a></li>
+            </ul>
+            
+        </div>
+
+        <div class="col-md-10" style="background-color:#F1F1F1 ; height:100%">
+                        
+            // ye block comment hai....
+                <div>
+                    <ul style="display:inline ; list-style:none ; align-content:center ; align-items:center ; height:5%">
+                        <li style="margin-top:-5%; margin-left:55%">
+                            <a href="" style="color:black">Home</a>
+                            <a href="" style="margin-left:15%; color:black">Trending</a>
+                            <br />
+                        </li>
+                    </ul>
+                </div>
+....yaha tk
+
+
+                <div class="multicol" >
+                    @foreach (var a in Model)
+                    {
+                        <div id="list" style="margin-left:2% " >
+                            <video width="200" height="180">
+                                <source src=~/Content/Video/@a.searchName type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                           <br />
+                            <div class="col-sm-8">
+                                <a href="/Main/ShowVideo/@a.Id" style="margin-bottom:1%">@a.pname</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+    
+
+    .//ye block b comment me hai
+    <div class="row">
+        <div class="col-sm-12">
+            <blockquote>
+                <div class="multicol">
+                    @foreach (var a in Model)
+                    {
+                        <div class="col-sm-3">
+                            <video width="200" height="180" >
+                                <source src=~/Content/Video/@a.searchName type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <br>
+                            <a href="/Main/ShowVideo/@a.Id">@a.pname</a>
+                        </div>
+
+                    }
+                </div>
+                
+            </blockquote>
+        </div>
+    </div>
+//yaha tk.....
+
+</body>
+*@
+
+
+@*@using project.Models;*@
+
+@{
+    ViewBag.Title = "HomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    <script>
+        $(document).ready(function () {
+            $("#dislike").hide();
+
+            $("#like").click(function () {
+                alert("like");
+                $("#like").hide();
+                $("#dislike").show();
+            });
+
+            $("#dislike").click(function () {
+                alert("dislike");
+                $("#like").show();
+                $("#dislike").hide();
+            });
+        });
+
+    </script>
+}
+<!DOCTYPE html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @*<style>
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 40%;
+                height:40%;
+                margin: auto;
+            }
+        </style>*@
+
+
+
+</head>
+<body>
+   
+
+    <div class="col-md-12">
+
+
+        <blockquote>
+
+            @foreach (var a in Model)
+            {
+                <div class="well" style="background-color:aliceblue">
+                    <a href="/Main/ShowVideo/@a.Id">@a.pname</a>
+                    <video width="320" height="240" controls>
+                        <source src=~/Content/Video/@a.searchName type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            }
+
+        </blockquote>
+    </div>
+
+    <!--Start Video Template-->
+    <link rel="stylesheet" type="text/css" href="~/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/example.css" />
+    <script type="text/javascript" src="~/js/showimg.js"></script>
+
+    <script type="text/javascript" src="~/js/gl_function.js"></script>
+    <script type="text/javascript" src="~/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.slide.js"></script>
+
+
+    @*<div class="example_3">
+        <div class="example_11">
+            <div class="example_12">
+                <div class="example_30">
+                    <div class="example_36">Your Title</div>
+                </div>
+                <div class="example_31">
+                </div>
+                <div class="example_32"><img id='img_32' src='images/example/example_42.png' width='400' height='300' border='0' /></div>
+                                    <div class="example_33">I am a pragraph here, you can enter your own texts here. I am a paragraph, you can enter your own </div> 
+            </div>
+
+
+            <div class="example_13">
+                <div class="example_30">
+                    <div class="example_36">Your Title</div>
+                </div>
+                <div class="example_31">
+                </div>
+                <div class="example_32"><img id='img_32' src='images/example/example_43.png' width='400' height='300' border='0' /></div>
+            </div>
+
+            <div class="example_12">
+                <div class="example_30">
+                    <div class="example_36">Your Title</div>
+                </div>
+                <div class="example_31">
+                </div>
+                <div class="example_32"><img id='img_32' src='images/example/example_42.png' width='400' height='300' border='0' /></div>
+            </div>
+
+
+            <div class="example_13">
+                <div class="example_30">
+                    <div class="example_36">Your Title</div>
+                </div>
+                <div class="example_31">
+                </div>
+                <div class="example_32"><img id='img_32' src='images/example/example_43.png' width='400' height='300' border='0' /></div>
+            </div>
+        </div>
+    </div>*@
+    <!--End Video Template-->
+</body>
+
+

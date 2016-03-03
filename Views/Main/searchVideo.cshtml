@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "searchVideo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2> </h2>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="content">
+            <div class="products-box">
+                <div class="products">
+                    <h5><span>Searching</span> Results</h5>
+                    <h1>searching Results are @ViewBag.u </h1>
+                            @foreach (var v in Model)
+                            {
+                                <div class="grid_1_of_5 images_1_of_5">
+                                    <video width="200" height="200">
+                                        <source src=~/Content/Video/@v.pname type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <h3 style="overflow-x:hidden"> @v.searchName </h3>
+                                    <p>Song Description here</p>
+                                    <h4><label>$5.00</label>Free</h4>
+                                    <div class="button"><span><a href="/Main/ShowVideo/@v.Id"> Let's watch </a></span></div>
+                                </div>
+                            }
+                </div>
+                </div>
+            </div>
+        </div>
+
+  </div>

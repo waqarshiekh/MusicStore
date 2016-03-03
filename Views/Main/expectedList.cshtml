@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "expectedList";
+}
+<div>
+    @foreach (var a in Model)
+    {
+        <div id="list" style="margin-left:2% ">
+            <video width="200" height="180">
+                <source src=~/Content/Video/@a.searchName type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <br />
+            <div class="col-sm-8">
+                <a href="/Main/ShowVideo/@a.Id" style="margin-bottom:1%">@a.pname</a>
+            </div>  
+        </div>
+    <hr />
+
+    }
+</div>

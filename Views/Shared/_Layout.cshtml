@@ -1,0 +1,135 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    @{
+        <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.min.js"></script>
+        <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/responsiveslides.css" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    }
+    
+    @{
+        <script>
+            $(document).ready(function () {
+                $("#logout").hide();
+                $("#upload").hide();
+                $("#Clients").hide();
+                $("#videos").hide();
+
+                $.getJSON("/Main/getSession", function (data) {
+
+                    if (data == true) {
+                        $("#login").hide();
+                        $("#upload").show();
+                        $("#logout").show();
+                        $("#signup").hide();
+                    }
+                    else {
+                        $("#login").show();
+                        $("#logout").hide();
+                        $("#upload").hide();
+                        $("#signup").show();
+                    }
+
+                    $.getJSON("/Main/getAdmin", function (data) {
+                        if (data == true) {
+                            $("#login").hide();
+                            $("#upload").show();
+                            $("#logout").show();
+                            $("#Clients").show();
+                            $("#videos").show();
+                            $("#signup").hide();
+
+                        }
+                        else {
+                        }
+                    });
+
+                });
+            });
+
+        </script>
+    }
+</head>
+<body>
+    <div class="wrap">
+
+
+        <div class="header">
+            <!---start-top-header--->
+            <div class="top-header">
+                <div class="top-header-left">
+                    <ul>
+                        <li class="active"><a href="/Main/front">Home</a></li>
+                        <li><a href="/Main/Specials">Specials</a></li>
+                        <li><a href="/Main/contact">Contact</a></li>
+                        <li id="signup"><a href="/Main/SignUp" id="signup"><span class=""></span> Sign Up</a></li>
+                        <li id="login"><a href="/Main/SignUp" id="login"><span class=""></span> Login</a></li>
+                        <li id="upload"><a href="/Main/uploadVideo" id="upload"><span class=""></span> upload Video</a></li>
+                        <li id="logout"><a href="/Main/logoutCurrentclient" id="logout"><span class=""></span>logout</a></li>
+                        <li id="Clients"><a href="/Main/showClient" id="Clients"><span class=""></span>Clients</a></li>
+                        <li id="videos"><a href="/Main/deleteVideo" id="videos"><span class=""></span>Videos Managment</a></li>
+                    </ul>
+                </div>
+                <div class="top-header-right">
+                    <ul>  
+                    </ul>
+                </div>
+
+                <div class="clear"> </div>
+            </div>
+
+            <div class="sub-header">
+                <div class="logo">
+                    <a href="/Main/front"><img src="~/images/logo.png" title="logo" /></a>
+                </div>
+                <div class="sub-header-center">
+                    <form action="/Main/searchVideo" method="post">
+                        <input type="text" id="url" name="url"><input type="submit" value="search" />
+                    </form>
+                </div>
+                <div class="sub-header-right">
+                    @*<ul>
+                        <li><a href="#">log in</a></li>
+                        <li><a href="#">Your account</a></li>
+                    </ul>*@
+                </div>
+                <div class="clear"> </div>
+            </div>
+            <div class="clear"> </div>
+            <div class="top-nav">
+                <ul>
+                    <li id="home"><a href="/Main/front">Home</a></li>
+                    <li><a href="~/Main/Artist">Artists</a></li>
+                    <li><a href="/Main/Specials">Specials</a></li>
+                    <li><a href="/Main/RecentAlbums">Recent-albums</a></li>
+                    <div class="clear"> </div>
+                </ul>
+            </div>
+            <!---end-top-header--->
+            <!---End-header--->
+        </div>
+    </div>
+
+
+</body>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+</html>
+

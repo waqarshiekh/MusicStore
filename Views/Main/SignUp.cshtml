@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = null;
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
+    <script src="~/Script/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+}
+
+@model project.Models.Client
+@Scripts.Render("~/bundles/jquery");
+@{
+    <script>
+        $(document).ready(function () {
+
+            $(function () { $("#datepicker").datepicker(); });
+
+            $("#uname").click(function () {
+
+                var userName = $("#cname").val();
+                if (userName != "") {
+                    $.getJSON("/Main/verifyUserName?UserName=" + userName, function (data) {
+                        if (data == true) {
+                            alert("User already exists in database");
+                        }
+                        else {
+                            alert("User Name is available");
+                        }
+                    });
+                }
+                else {
+                    alert("user name is empty plz fill user name field first");
+                }
+            });
+            
+            
+            $("#bemail").click(function () {
+                var Email = $('#cemail').val();
+                //alert('User Name ='+ userName);
+                if (Email != "") {
+                    $.getJSON("/Main/verifyUserEmail?Email=" + Email, function (data) {
+                        if (data) {
+                            alert("email already exists in database");
+                        }
+                        else {
+                            alert("email is available");
+                        }
+                    });
+                }
+                else {
+                    alert("Email is empty plz fill Email field first");
+                }   
+            });
+        });
+    </script>
+}
+
+<head>
+    <meta charset="utf-8">
+    <title>Sign up Music Store</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="~/Scripts/jquery-ui.css" />
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+
+    </head>
+<body  style="background-color:darkmagenta">
+
+    <nav class="navbar navbar-default navbar-md " style="background-color:darkgrey">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-3">
+            <h3> <strong> welcome to Sign in Page</strong></h3>
+        </div>
+
+        <div class="col-md-8 ">
+            <form action="/Main/VerifyUser" method="post">
+                <ul class="nav navbar-nav pull-right">
+
+                    <li> Email <br /> <input type="email" value=" " name="cemail" placeholder="type email here" required="required" width="120" /> </li>
+
+                    <li>Passowrd <br /> <input type="password" value=" " id="cpassword" name="cpassword" placeholder="type password here" required="required" width="120" /> </li>
+
+                    <li> <br /> <input type="submit" style="margin-left:1%; margin-top:-1%" value="Login" name="loginbtn" id="log" class="btn btn-info pull-right" /> </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="jumbotron" style="background-color:cornflowerblue royalblue">
+        <h1>    This area is for Sign up</h1>
+        <h3>    it,s will be free and allways will be</h3>
+    </div>
+
+
+    <div class="col-sm-12" style="background-image:url(/Images/closureImage/backgrond1.jpg)" >
+         <div class="col-md-1"></div>
+
+
+        <div class="col-sm-3">
+        </div>
+
+        <div class="col-sm-4">
+
+            <div class="form-group   pull-center">
+                
+                @using (Html.BeginForm("SaveClient", "Main", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="editor-label">
+                        @Html.LabelFor(Model => Model.cname)
+                    </div>
+                    
+                    <div class="editor-label">
+                        @Html.TextBoxFor(Model => Model.cname, new { @placeholder = "enter user name", @id = "cname", @required = "required", @class = "form-control" }) 
+                        @Html.ValidationMessageFor(x=>x.cname)
+                        <button type="button" id="uname" class="btn btn-info pull-right">check</button>
+
+                        @*@Html.ValidationMessageFor(Model => Model.cname)*@
+                    </div>
+                    
+                  <div class="editor-label">
+                  @Html.LabelFor(Model => Model.cemail)
+                  </div>
+
+               <div class="editor-label">
+               @Html.TextBoxFor(Model => Model.cemail, new { @placeholder = "enter user email ",  type="email",  @id = "cemail", @class = "form-control", @required = "required" })
+                  <span style="color:red"> @Html.ValidationMessageFor(Model => Model.cemail)</span>
+                    <button type="button" id="bemail" class="btn btn-info pull-right">check</button>
+              
+               </div>
+                    <br/>
+                    <br/>
+                    <p>Date:<input type="text" id="datepicker" placeholder="select data from data picker "></p>
+                    
+                    
+               <div class="editor-label">
+               @Html.LabelFor(Model => Model.cpassword)
+               </div>
+
+               <div class="editor-label">
+               @Html.TextBoxFor(Model => Model.cpassword, new { @placeholder = "enter user password ", @required = "required", @class = "form-control" })
+               @Html.ValidationMessageFor(x => x.cpassword)
+               </div>
+    
+                    
+               <div class="editor-label">
+               @Html.LabelFor(x => x.caddress)
+               </div>
+
+               <div class="editor-label">
+               @Html.TextBoxFor(Model => Model.caddress, new { @placeholder = "enter user address ", @class = "form-control" })
+               @Html.ValidationMessageFor(x => x.caddress)
+               </div>                
+        
+               <div class="editor-label">
+               @Html.LabelFor(x =>x.country)
+               </div>
+
+               <div class="editor-label">
+               @Html.TextBoxFor(Model => Model.country, new { @placeholder = "enter user country name ", @class = "form-control" })
+               @Html.ValidationMessageFor(Model => Model.country)
+               </div>            
+                
+
+                <div class="editor-label">
+                    @Html.LabelFor(Model => Model.region)
+                </div>
+                <div class="editor-label">
+                    @Html.TextBoxFor(Model => Model.region, new { @placeholder = "enter user region ", @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.region)
+                </div>
+                    <input type="submit" value="Sign up" class="btn btn-info pull-right"/>
+                    <br />
+                    <br />
+                }
+</div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</body>
+
+    
+
+
+
+

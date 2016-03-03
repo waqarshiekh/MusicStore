@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "front";
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Music a Entertainment</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/responsiveslides.css" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script>
+		    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+    </script>
+</head>
+
+<body>
+    <!---start-wrap--->
+    <div class="wrap">
+        <!--start-image-slider---->
+        <div class="image-slider">
+            <!-- Slideshow 1 -->
+            <ul class="rslides" id="slider1">
+                <li><img src="~/images/slider1.jpg" alt=""></li>
+                <li><img src="~/images/slider2.jpg" alt=""></li>
+                <li><img src="~/images/slider3.jpg" alt=""></li>
+            </ul>
+            <!-- Slideshow 2 -->
+        </div>
+
+       
+
+        <!--End-image-slider---->
+           <div class="content">
+            <div class="products-box">
+                <div class="products">
+                    <h5><span>FEATURED</span> PRODUCTS</h5>
+                    <div class="section group">
+
+                     @foreach(var a in Model)
+                      {
+                          <div class="grid_1_of_5 images_1_of_5">
+                              <video width="200" height="200" >
+                                  <source src=~/Content/Video/@a.pname type="video/mp4">
+                                  Your browser does not support the video tag.
+                              </video>
+                            <h3 style="overflow-x:hidden"> @a.searchName </h3>
+                                  <p>Song Description here</p>
+                                  <h4><label>$5.00</label>Free</h4>
+                                  <div class="button"><span><a href="/Main/ShowVideo/@a.Id"> Let's watch </a></span></div>
+                        </div>
+                      }
+                    </div>
+                 </div>
+              </div>
+                     </div>
+    </div>
+
+                    <div class="clear"> </div>
+
+                    <div class="footer">
+                        <div class="wrap">
+                            <div class="section group">
+                                <div class="col_1_of_4 span_1_of_4">
+                                    <h3>INFORMATION</h3>
+                                    <ul>
+                                        <li><a href="/Main/AboutUs">About us</a></li>
+                                        <li><a href="#">Sitemap</a></li>
+                                        <li><a href="/Main/contact">Contact</a></li>
+                                        <li><a href="#">Terms and conditions</a></li>
+                                        <li><a href="#">Legal Notice</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col_1_of_4 span_1_of_4">
+                                    <h3>OUR OFFERS</h3>
+                                    <ul>
+                                        <li><a href="/Main/Specials">Specials</a></li>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="col_1_of_4 span_1_of_4">
+                                    <h3>YOUR ACCOUNT</h3>
+                                    <ul>
+                                        <li><a href="#">Your Account</a></li>
+                                        <li><a href="#">Personal info</a></li>
+                                        <li><a href="#">Address</a></li>
+                                        <li><a href="#">Locations</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+                                    <h3>Get in touch</h3>
+                                    <ul>
+                                        <li><a href="https://www.facebook.com/waqar.shiekh.391"><img src="~/images/facebook.png" title="facebook" /></a></li>
+                                        <li><a href="https://twitter.com/WaqarShiekh57"><img src="~/images/twitter.png" title="Twiiter" /></a></li>
+                            
+                                    </ul>
+                                    <p>&copy; All Rights Reserved | Design by <a href="#">WAQAR SHIEKH</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---End-wrap--->
+</body>
+</html>
+

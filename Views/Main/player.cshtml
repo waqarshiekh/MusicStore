@@ -1,0 +1,113 @@
+﻿
+<script type="text/javascript">
+
+    //Global variable for the current video name
+    document.ready()
+    {
+        alert(myVideo.controls);
+    }
+
+
+
+
+    alert(myVideo.controls);
+
+
+    var currentVideoName = 'video1.avi';
+
+    var videoList = ['video1.avi', 'video2.mp4', 'video3.mpg'];
+        var index = videoList.indexOf(window.currentVideoName);
+
+    //Next button
+    myVideo.pause();
+    myVideo.currentTime = 0;
+    myVideo.src = 'videosDirectory/' + videoList[index + 1];
+    window.currentVideoName = videoList[index + 1];
+    myVideo.play();
+
+    //Pause button
+    myVideo.pause();
+
+    //Previous button
+
+
+    //Play button
+    myVideo.play();
+
+    
+    alert(index);
+    var currentVideoName = 'a.mp4';
+    //Next button
+    function next() {
+
+        var videoList = ['a.mp4', 'abc.mp4', 'check.mp4'];
+        var index = videoList.indexOf(window.currentVideoName);
+        
+        var myVideo = document.getElementById('currentVideo');
+        myVideo.pause();
+        myVideo.currentTime = 0;
+
+        myVideo.src = '/Images/' + videoList[index + 1];
+        
+        window.currentVideoName = videoList[index + 1];
+        window.currentVideo = videoList[index + 1];
+        
+        myVideo.play();
+
+        //alert("now");
+        //var video = document.getElementById('currentVideo');
+        //alert("current video name" + video.currentSrc);
+        //video.setAttribute("src", "~/Images/abc.mp4");
+
+        //document.getElementById("currentVideo").load();
+
+        // document.getElementById("first").src = '/Images/' + videoList[index + 1];
+
+        //document.getElementById("currentVideo").load();
+    }
+    //Pause button
+    function pause() {
+
+
+        myVideo.pause();
+    }
+        //Previous button
+    
+    function previous() {
+        
+        var videoList = ['a.mp4', 'abc.mp4', 'check.mp4'];
+        var index = videoList.indexOf(window.currentVideoName);
+        
+        var myVideo = document.getElementById('currentVideo');
+        myVideo.pause();
+        myVideo.currentTime = 0;
+
+        myVideo.src = '/Images/' + videoList[index - 1];
+        window.currentVideoName = videoList[index - 1];
+        window.currentVideo = videoList[index - 1];
+
+        myVideo.play();
+    }
+
+    //Play button
+    function play() {
+        myVideo.play();
+    }
+
+</script>
+
+
+<html>
+<body>
+    <video id='currentVideo' controls>
+            <source src=~/Images/a.mp4 id="first" type="video/mp4" />
+            Your browser does not support the video tag.
+    </video>
+    <br />
+    <input type="button" onclick="previous()" value="previous" />
+    <input type="button" onclick="next()" value="next" />
+    <input type="button" onclick="play()" value="play" />
+    <input type="button" onclick="pause()" value="pause" />
+
+</body>
+</html>

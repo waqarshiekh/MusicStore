@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "ShowVideo";
+}
+
+@{
+    <script>
+        $(document).ready(function () {
+            
+        $("#dislike").hide();
+        $("#messageArea").hide();
+        $("#post").hide();
+      
+        $("#expectedList").load("/Main/expectedList?id=+@ViewBag.vid");
+
+        $.getJSON("/Main/getSession", function (data) {
+            if (data == true) {
+                $("#messageArea").show();
+                $("#post").show();
+            }
+            else {
+                $("#messageArea").hide();
+                $("#post").hide();
+            }
+        });
+
+
+
+        $("#like").click(function () {
+            //alert("in like");
+            $.getJSON("/Main/SetLike?id=+ @ViewBag.vid", function (data) {
+            });
+            $("#like").hide();
+            $("#dislike").show();
+            $.getJSON("/Main/getLike?id=+ @ViewBag.vid", function (data) {
+
+                $("#LoadLike").load("/Main/ViewLike?id=+@ViewBag.vid");
+            });
+        });
+
+        $("#dislike").click(function () {
+            //alert("in dislike");
+            $.getJSON("/Main/SetDisLike?id=+ @ViewBag.vid", function (data) {
+            });
+            $("#like").show();
+            $("#dislike").hide();
+            $.getJSON("/Main/getLike?id=+ @ViewBag.vid", function (data) {
+                $("#LoadLike").load("/Main/ViewLike?id=+@ViewBag.vid");
+
+            });
+        });
+
+
+        $("#post").click(function () {
+            
+            var val = document.getElementById("message").value;
+
+            $.getJSON("/Main/Comments?id=+ @ViewBag.vid+&message="+val, function (data) {
+
+                $("#c1").load("/Main/Load?id=+@ViewBag.vid");
+            });
+
+        });
+    });
+    </script>
+}
+
+<h2>ShowVideo</h2>
+
+<div class="wrap">
+    <div class="row">
+
+        <div class="col-md-8">
+            <div>
+                <video width="100%" height="100%" controls>
+                    <source src=~/Content/Video/@ViewBag.vname type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <div id="LoadLike">
+                    <span id="LoadLike" style="color:white">@ViewBag.Like</span>
+                </div>
+                <br />
+
+                <div id="like">
+                    <input type="button" id="like" value="Like" class="btn btn-info " style="background-color:rgba(0,0,0,.5)" />
+                </div>
+                <div id="dislike">
+                    <input type="button" id="Dislike" value="Dislike" class="btn btn-info" style="background-color:rgba(0,0,0,.5)" />
+                </div>
+                <div id="Download" style="margin-left:9%; margin-top:-3% ; background-color:rgba(0,0,0,.5)" >
+                    <ul style="list-style:none">
+                        <li id="Download" style="margin-top:-5%"> <a class="btn btn-info" href="/Main/Download/@ViewBag.vid" id="fname" style="background-color:rgba(0,0,0,.5)">Download</a></li>
+                    </ul>
+                </div>
+                <br />
+                <br />
+                
+                <div id="c1">
+                    @*<ul style="list-style:none">*@
+
+                        @foreach (var x in Model)
+                        {
+                          <div style="color:white; background-color:rgba(0,0,0,.5) ; box-shadow:1px 1px 1px 1px ; text-align:center" >
+                              <br />
+                                <h1 style="color:white;background-color:rgba(0,0,0,.5) ; align-content:center">@x.message</h1>
+                            <br />
+                            <br /> 
+                                 </div>
+                            <br />
+                        }
+                    
+                </div>
+
+                <div id="messageArea" style=" background-color:rgba(0,0,0,.5)">
+                    <input type="text" required="required" placeholder="comment here" id="message" name="message" >
+                </div>
+                <br />
+                <br />
+                <div id="post">
+                    <input type="button" id="post" name="post" value="post Comment" class="btn btn-info" style="background-color:rgba(0,0,0,.5)" />
+                </div>
+                <br />
+                <br />
+            </div>
+
+        </div>
+    </div>
+</div>

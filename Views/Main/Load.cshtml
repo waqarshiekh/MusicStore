@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Load";
+    Layout = null;
+}
+
+
+<br />
+<br />
+@foreach (var q in Model)
+{
+    <div style="color:white; background-color:rgba(0,0,0,.5) ; box-shadow:1px 1px 1px 1px ; text-align:center" >
+        <br />
+        <h1 style="color:white; background-color:rgba(0,0,0,.5) ; align-content:center">@q.message</h1>
+        <br />
+        <br />
+    </div>
+    <br />
+}

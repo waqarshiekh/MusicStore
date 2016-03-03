@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "VideoExist";
+}
+
+<h2>VideoExist</h2>
+
+<div class="well">
+    <p> this Video is already Exist on the website </p>
+    <form action="/Main/uploadVideo" method="post">
+        <input type="submit" name="again" value="upload Video again" />
+    </form>
+
+    <form action="/Main/HomePage" method="post">
+        <input type="submit" name="home" value="Home" />
+    </form>
+</div>
